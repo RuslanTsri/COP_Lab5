@@ -1,0 +1,78 @@
+/* --- Hacker Style --- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    background-color: #0d0d0d; /* Дуже темний фон */
+    color: #00ff41; /* Яскраво-зелений текст */
+    font-family: 'Courier New', Courier, monospace; /* Класичний "друкарський" шрифт */
+    text-shadow: 0 0 5px #00ff41; /* Ефект світіння для тексту */
+    margin: 0; /* Важливо скинути відступи за замовчуванням */
+
+    /* ВЛАСТИВОСТІ ДЛЯ ЦЕНТРУВАННЯ 👇 */
+    display: flex;
+    align-items: center; /* Центрування по вертикалі */
+    justify-content: center; /* Центрування по горизонталі */
+    min-height: 100vh; /* Робить body на всю висоту екрану */
+}
+
+.app-container {
+    max-width: 800px;
+    /* 'margin: 0 auto' більше не потрібен для горизонтального центрування,
+       але не заважає, тому можна залишити або видалити */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out; /* Анімація появи */
+}
+
+h1, h2 {
+    text-transform: uppercase; /* Великі літери для заголовків */
+}
+
+button {
+    background-color: transparent;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Плавний перехід для анімації */
+}
+
+button:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 0 15px #00ff41; /* Ефект світіння при наведенні */
+}
+
+/* Стилі для ігрової дошки */
+.board {
+    width: 362px; /* 360px + 2px рамка */
+    height: 362px;
+    border: 1px solid #00ff41;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    box-shadow: 0 0 10px #00ff41;
+}
+
+.cell {
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+* {
+    box-sizing: border-box;
+}

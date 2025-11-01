@@ -1,0 +1,39 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.field label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.field input, .field select {
+    background-color: rgba(0, 255, 65, 0.05);
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.field select option {
+    background-color: #0d0d0d;
+}
+
+.error {
+    color: #ff4757;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    text-shadow: none;
+}

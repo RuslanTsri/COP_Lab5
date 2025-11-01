@@ -1,0 +1,15 @@
+.resultsContainer {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px #00ff41;
+}
+
+.message {
+    font-size: 1.2rem;
+    color: #a2ffbd;
+    margin-bottom: 30px;
+}
