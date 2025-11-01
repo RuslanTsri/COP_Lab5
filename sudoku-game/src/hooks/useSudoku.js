@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'; // Додаємо useEffect
+import { useState, useCallback, useEffect } from 'react';
 import { generateSudoku } from '../utils/sudoku';
 import { checkSudoku } from '../utils/sudokuChecker';
 
@@ -28,21 +28,18 @@ export const useSudoku = (onWin) => {
             return newGrid;
         });
     }, [selectedCell]);
-
-    // ✅ ВИПРАВЛЕНО ТУТ: Перевіряємо перемогу через useEffect
-    // Цей код спрацює щоразу, коли `grid` оновиться
     useEffect(() => {
         if (grid) {
             const isFull = grid.every(row => row.every(cell => cell !== null));
             if (isFull && checkSudoku(grid)) {
-                onWin(); // Викликаємо колбек при перемозі
+                onWin();
             }
         }
     }, [grid, onWin]);
 
     return {
         grid,
-        initialGrid, // Переконуємось, що експортуємо initialGrid
+        initialGrid,
         selectedCell,
         createNewGame,
         handleCellSelect,

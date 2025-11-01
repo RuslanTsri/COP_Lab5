@@ -2,8 +2,8 @@
 function hasDuplicates(array) {
     const seen = new Set();
     for (const item of array) {
-        if (item === null) return false; // Якщо є порожні клітинки, ще не вирішено
-        if (seen.has(item)) return true; // Знайшли дублікат
+        if (item === null) return false;
+        if (seen.has(item)) return true;
         seen.add(item);
     }
     return false;
@@ -17,7 +17,7 @@ export function checkSudoku(grid) {
         const row = grid[i];
         const column = grid.map(r => r[i]);
         if (hasDuplicates(row) || hasDuplicates(column)) {
-            return false; // Помилка в рядку або стовпці
+            return false;
         }
     }
 
@@ -31,10 +31,10 @@ export function checkSudoku(grid) {
                 }
             }
             if (hasDuplicates(box)) {
-                return false; // Помилка в квадраті
+                return false;
             }
         }
     }
 
-    return true; // Якщо всі перевірки пройшли, судоку вирішено правильно
+    return true;
 }

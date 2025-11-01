@@ -30,7 +30,7 @@ const Board = ({ grid, initialGrid, selectedCell, onCellSelect }) => {
 
 Board.propTypes = {
     grid: PropTypes.array.isRequired,
-    initialGrid: PropTypes.array.isRequired, // Додаємо
+    initialGrid: PropTypes.array.isRequired,
     selectedCell: PropTypes.object,
     onCellSelect: PropTypes.func.isRequired,
 };

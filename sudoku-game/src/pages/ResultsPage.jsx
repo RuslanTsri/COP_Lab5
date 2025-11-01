@@ -8,7 +8,6 @@ const ResultsPage = () => {
     const navigate = useNavigate();
     const results = useGameStore((state) => state.results);
 
-    // Дістаємо останній результат, щоб показати повідомлення
     const latestResult = results.length > 0 ? results[0] : null;
 
     const getMessage = () => {
@@ -33,7 +32,7 @@ const ResultsPage = () => {
                         <th>Гравець</th>
                         <th>Складність</th>
                         <th>Час (сек)</th>
-                        <th>Статус</th> {/* Нова колонка */}
+                        <th>Статус</th>
                     </tr>
                     </thead>
                     <tbody>

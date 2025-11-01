@@ -8,13 +8,13 @@ import { useGameStore } from '../store/useGameStore';
 import styles from './StartPage.module.css';
 
 const StartPage = () => {
-    // 2. Дістаємо налаштування і функцію для їх зміни зі стору
+
     const settings = useGameStore((state) => state.settings);
     const startGame = useGameStore((state) => state.startGame);
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
-        resolver: yupResolver(settingsSchema), // <-- ДОДАЙТЕ ЦЕЙ РЯДОК
+        resolver: yupResolver(settingsSchema),
         defaultValues: settings,
     });
 
@@ -23,7 +23,7 @@ const StartPage = () => {
     }, [settings, reset]);
 
     const onSubmit = (data) => {
-        startGame(data); // 3. Викликаємо екшен зі стору
+        startGame(data);
         navigate('/game');
     };
 

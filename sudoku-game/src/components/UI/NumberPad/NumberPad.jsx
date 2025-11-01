@@ -12,7 +12,6 @@ const NumberPad = ({ onNumberClick }) => {
                     {num}
                 </Button>
             ))}
-            {/* Кнопка для стирання */}
             <Button onClick={() => onNumberClick(null)} className={styles.clearButton}>
                 X
             </Button>
