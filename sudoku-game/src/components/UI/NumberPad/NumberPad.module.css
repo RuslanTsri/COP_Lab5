@@ -1,0 +1,24 @@
+.numberPad {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.numberPad button {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+.clearButton {
+    color: #ff4757 !important;
+    border-color: #ff4757 !important;
+}
+
+.clearButton:hover {
+    background-color: rgba(255, 71, 87, 0.1) !important;
+    box-shadow: 0 0 15px #ff4757 !important;
+}

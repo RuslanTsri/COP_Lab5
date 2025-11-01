@@ -15,3 +15,16 @@
     background-color: rgba(0, 255, 65, 0.3);
     box-shadow: 0 0 10px #00ff41;
 }
+.initial {
+    color: #a2ffbd; /* Колір для початкових, незмінних цифр */
+    font-weight: bold;
+}
+
+.editable {
+    color: #00ff41;
+    cursor: pointer;
+}
+
+.editable:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+}

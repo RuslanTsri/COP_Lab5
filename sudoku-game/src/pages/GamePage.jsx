@@ -1,56 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { useOutletContext, useNavigate } from 'react-router-dom';
-import Modal from '../components/UI/Modal/Modal';
-import Button from '../components/UI/Button/Button';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Board from '../components/Board/Board';
 import { useSudoku } from '../hooks/useSudoku';
 import styles from './GamePage.module.css';
+import { useGameStore } from '../store/useGameStore';
+import NumberPad from '../components/UI/NumberPad/NumberPad';
+import Button from '../components/UI/Button/Button'; // Імпортуємо кнопку
 
 const GamePage = () => {
-
-    const { settings } = useOutletContext();
+    const difficulty = useGameStore((state) => state.settings.difficulty);
+    const playerName = useGameStore((state) => state.settings.playerName);
+    const { finishGame, quitGame } = useGameStore(); // Дістаємо обидва екшени
+    const gameStatus = useGameStore((state) => state.gameStatus);
     const navigate = useNavigate();
 
-    const { grid, createNewGame, selectedCell, handleCellSelect } = useSudoku();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { grid, initialGrid, selectedCell, createNewGame, handleCellSelect, handleNumberInput } = useSudoku(finishGame);
 
     useEffect(() => {
-
-        if (settings?.difficulty) {
-            createNewGame(settings.difficulty);
+        if (difficulty) {
+            createNewGame(difficulty);
         } else {
-
             navigate('/');
         }
-    }, [settings, createNewGame, navigate]);
+    }, [difficulty, createNewGame, navigate]);
 
-    const handleFinishGame = () => {
-        setIsModalOpen(true);
-    };
+    useEffect(() => {
+        // Цей ефект перенаправить на результати при будь-якому завершенні гри
+        if (gameStatus === 'finished') {
+            navigate('/results');
+        }
+    }, [gameStatus, navigate]);
 
-    if (!grid) {
+    if (!grid || !initialGrid) {
         return <div>Генерація поля...</div>;
     }
 
     return (
         <div>
-
             <h2 className={styles.pageHeader}>
-                Гравець: <span className={styles.playerName}>{settings.playerName}</span>, Складність: {settings.difficulty}
+                Гравець: <span className={styles.playerName}>{playerName}</span>, Складність: {difficulty}
             </h2>
             <Board
                 grid={grid}
+                initialGrid={initialGrid}
                 selectedCell={selectedCell}
                 onCellSelect={handleCellSelect}
             />
-            <Button onClick={handleFinishGame}>Завершити гру</Button>
+            <NumberPad onNumberClick={handleNumberInput} />
 
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <h2>Гру завершено!</h2>
-                <p>Вітаємо, {settings.playerName}!</p>
-                <Button onClick={() => navigate('/results')}>Перейти до результатів</Button>
-                <Button onClick={() => window.location.reload()}>Почати цей тур заново</Button>
-            </Modal>
+            {/* ✅ Повертаємо кнопку з новою логікою */}
+            <div className={styles.quitContainer}>
+                <Button onClick={quitGame}>Завершити достроково</Button>
+            </div>
         </div>
     );
 };

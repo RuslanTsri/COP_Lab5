@@ -1,30 +1,29 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { settingsSchema } from '../utils/validationSchemas';
 import Button from '../components/UI/Button/Button';
+import { useGameStore } from '../store/useGameStore';
 import styles from './StartPage.module.css';
 
 const StartPage = () => {
-
-    const { settings, setSettings } = useOutletContext();
+    // 2. Дістаємо налаштування і функцію для їх зміни зі стору
+    const settings = useGameStore((state) => state.settings);
+    const startGame = useGameStore((state) => state.startGame);
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
-        resolver: yupResolver(settingsSchema),
+        resolver: yupResolver(settingsSchema), // <-- ДОДАЙТЕ ЦЕЙ РЯДОК
         defaultValues: settings,
     });
 
     useEffect(() => {
-        if (settings) {
-            reset(settings);
-        }
+        if (settings) reset(settings);
     }, [settings, reset]);
 
-
     const onSubmit = (data) => {
-        setSettings(data);
+        startGame(data); // 3. Викликаємо екшен зі стору
         navigate('/game');
     };
 
